@@ -145,6 +145,15 @@
     --black-alpha-2: 0, 0, 0, 0.04;
     --border-blue: 39, 129, 246, 0.5;
     --white-alpha: 255, 255, 255, 0.8;
+
+    // iOS 6 Design System
+    --ios6-primary-blue: #147EFB;
+    --ios6-background-dark: #3d3d3d;
+    --ios6-surface-white: #ffffff;
+    --ios6-border-gray: #c8c7cc;
+    --ios6-linen-pattern: repeating-linear-gradient(45deg, rgba(0,0,0,0.15) 0, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px), repeating-linear-gradient(135deg, rgba(0,0,0,0.15) 0, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+    --ios6-app-shell: #3d3d3d;
+    --ios6-main-content: #4a4a4a;
   }
 
   .dark {

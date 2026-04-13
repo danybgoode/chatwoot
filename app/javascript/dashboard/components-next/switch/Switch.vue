@@ -19,15 +19,15 @@ const updateValue = () => {
 <template>
   <button
     type="button"
-    class="group relative h-4 rounded-full w-7 flex-shrink-0 select-none focus:outline-none focus:ring-1 focus:ring-n-brand focus:ring-offset-n-slate-2 focus:ring-offset-2 transition-colors duration-200 ease-in-out"
-    :class="modelValue ? 'bg-n-brand' : 'bg-n-slate-6'"
+    class="ios6-track group relative h-4 rounded-full w-7 flex-shrink-0 select-none focus:outline-none focus:ring-1 focus:ring-n-brand focus:ring-offset-n-slate-2 focus:ring-offset-2"
+    :class="modelValue ? 'ios6-track-on' : 'ios6-track-off'"
     role="switch"
     :aria-checked="modelValue"
     @click="updateValue"
   >
     <span class="sr-only">{{ t('SWITCH.TOGGLE') }}</span>
     <span
-      class="absolute top-1/2 ltr:left-0.5 rtl:right-0.5 -translate-y-1/2 transition-transform duration-[350ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+      class="ios6-knob-wrapper absolute top-1/2 ltr:left-0.5 rtl:right-0.5 -translate-y-1/2"
       :class="
         modelValue
           ? 'ltr:translate-x-3 rtl:-translate-x-3 group-active:ltr:translate-x-[6px] rtl:group-active:-translate-x-[6px]'
@@ -35,8 +35,30 @@ const updateValue = () => {
       "
     >
       <span
-        class="block h-3 w-3 rounded-full bg-n-background shadow-md transition-[width] duration-[180ms] ease-in-out group-active:w-[18px]"
+        class="ios6-knob block h-3 w-3 rounded-full group-active:w-[18px]"
       />
     </span>
   </button>
 </template>
+
+<style scoped>
+.ios6-track {
+  transition: all 0.2s ease !important;
+}
+.ios6-track-on {
+  background: linear-gradient(to bottom, #4cd964, #34b84a) !important;
+}
+.ios6-track-off {
+  background: linear-gradient(to bottom, #d0d0d0, #b8b8b8) !important;
+}
+.ios6-knob-wrapper {
+  transition: transform 0.2s ease !important;
+}
+.ios6-knob {
+  background: #ffffff !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: width 0.2s ease !important;
+}
+</style>

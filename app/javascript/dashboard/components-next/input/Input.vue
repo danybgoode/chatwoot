@@ -137,7 +137,7 @@ onMounted(() => {
           ? max
           : undefined
       "
-      class="block w-full reset-base text-sm !mb-0 outline outline-1 border-none border-0 outline-offset-[-1px] rounded-lg bg-n-alpha-black2 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-n-slate-10 dark:placeholder:text-n-slate-10 disabled:cursor-not-allowed disabled:opacity-50 text-n-slate-12 transition-all duration-500 ease-in-out [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+      class="ios6-input block w-full reset-base text-sm !mb-0 outline outline-1 border-none border-0 outline-offset-[-1px] rounded-lg bg-n-alpha-black2 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-n-slate-10 dark:placeholder:text-n-slate-10 disabled:cursor-not-allowed disabled:opacity-50 text-n-slate-12 transition-all duration-500 ease-in-out [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
       @input="handleInput"
       @focus="handleFocus"
       @blur="handleBlur"
@@ -152,3 +152,29 @@ onMounted(() => {
     </p>
   </div>
 </template>
+
+<style scoped>
+.ios6-input {
+  background: linear-gradient(to bottom, #d0d0d0, #e8e8e8) !important;
+  border: 1px solid #aaaaaa !important;
+  border-radius: 6px !important;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(0, 0, 0, 0.2) !important;
+  color: #1a1a1a !important;
+  outline: none !important;
+}
+
+.ios6-input::placeholder {
+  color: #888888 !important;
+}
+
+.ios6-input:focus,
+.ios6-input.focus {
+  border-color: #147efb !important;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(0, 0, 0, 0.2),
+    0 0 0 3px rgba(20, 126, 251, 0.3) !important;
+}
+</style>

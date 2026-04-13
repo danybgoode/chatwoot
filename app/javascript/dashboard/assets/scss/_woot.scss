@@ -18,18 +18,14 @@
 html,
 body {
   font-family:
-    'Inter',
-    -apple-system,
-    system-ui,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
     'Helvetica Neue',
-    Tahoma,
+    Helvetica,
     Arial,
     sans-serif !important;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--ios6-app-shell) !important;
+  background-image: var(--ios6-linen-pattern) !important;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -42,6 +38,14 @@ body {
 
 #app {
   @apply h-full w-full;
+  background-color: var(--ios6-app-shell) !important;
+  background-image: var(--ios6-linen-pattern) !important;
+}
+
+/* Override utility class for main content backgrounds */
+.bg-n-background {
+  background-color: var(--ios6-main-content) !important;
+  background-image: var(--ios6-linen-pattern) !important;
 }
 
 .custom-dashed-border {

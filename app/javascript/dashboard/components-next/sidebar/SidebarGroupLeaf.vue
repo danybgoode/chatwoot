@@ -31,9 +31,9 @@ const shouldRenderComponent = computed(() => {
       :is="to ? 'router-link' : 'div'"
       :to="to"
       :title="label"
-      class="flex h-8 items-center gap-2 px-2 py-1 rounded-lg hover:bg-gradient-to-r from-transparent via-n-slate-3/70 to-n-slate-3/70 group min-w-0"
+      class="ios6-nav-item flex h-8 items-center gap-2 px-2 py-1 rounded-lg group min-w-0"
       :class="{
-        'text-n-slate-12 bg-n-alpha-2 active': active,
+        active: active,
       }"
     >
       <component
@@ -52,3 +52,19 @@ const shouldRenderComponent = computed(() => {
     </component>
   </Policy>
 </template>
+
+<style scoped>
+.ios6-nav-item {
+  color: #c8c7cc !important;
+  background: transparent !important;
+}
+.ios6-nav-item:hover {
+  background: linear-gradient(to bottom, #5a5a5a, #3a3a3a) !important;
+  color: #ffffff !important;
+}
+.ios6-nav-item.active {
+  background: linear-gradient(to bottom, #1e84fd, #0060e0) !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+</style>
