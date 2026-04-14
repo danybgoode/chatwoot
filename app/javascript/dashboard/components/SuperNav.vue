@@ -43,7 +43,7 @@ export default {
           {{ $t('supernav.social') }}
         </a>
         <a
-          href="https://support.despachobonsai.com"
+          href="https://chat.despachobonsai.com"
           class="pill"
           :class="{ active: activeApp === 'support' }"
         >
@@ -93,7 +93,7 @@ export default {
         {{ $t('supernav.social') }}
       </a>
       <a
-        href="https://support.despachobonsai.com"
+        href="https://chat.despachobonsai.com"
         :class="{ active: activeApp === 'support' }"
       >
         {{ $t('supernav.support') }}
