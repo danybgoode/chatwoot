@@ -1,5 +1,6 @@
 <script>
 import { mapGetters } from 'vuex';
+import SuperNav from './components/SuperNav.vue';
 import LoadingState from './components/widgets/LoadingState.vue';
 import NetworkNotification from './components/NetworkNotification.vue';
 import UpdateBanner from './components/app/UpdateBanner.vue';
@@ -24,6 +25,7 @@ export default {
   name: 'App',
 
   components: {
+    SuperNav,
     LoadingState,
     NetworkNotification,
     UpdateBanner,
@@ -133,9 +135,10 @@ export default {
   <div
     v-if="!authUIFlags.isFetching && !accountUIFlags.isFetchingItem"
     id="app"
-    class="flex flex-col w-full h-screen min-h-0 bg-n-background"
+    class="flex flex-col w-full h-screen min-h-0 bg-n-background app-wrapper"
     :dir="isRTL ? 'rtl' : 'ltr'"
   >
+    <SuperNav />
     <UpdateBanner :latest-chatwoot-version="latestChatwootVersion" />
     <template v-if="currentAccountId">
       <PendingEmailVerificationBanner v-if="hideOnOnboardingView" />
@@ -165,5 +168,9 @@ export default {
 
 .v-popper--theme-tooltip .v-popper__arrow-container {
   display: none;
+}
+
+.app-wrapper {
+  padding-top: 36px;
 }
 </style>

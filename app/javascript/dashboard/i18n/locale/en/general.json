@@ -15,5 +15,15 @@
   "CHOICE_TOGGLE": {
     "YES": "Yes",
     "NO": "No"
+  },
+  "supernav": {
+    "bonsai": "Bonsai",
+    "dashboard": "Dashboard",
+    "social": "Social",
+    "support": "Support",
+    "calendar": "Calendar",
+    "back": "← Dashboard",
+    "menu": "≡",
+    "menu_label": "Toggle Navigation"
   }
 }
