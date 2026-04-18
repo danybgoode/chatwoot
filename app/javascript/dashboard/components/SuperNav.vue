@@ -49,13 +49,6 @@ export default {
         >
           {{ $t('supernav.support') }}
         </a>
-        <a
-          href="https://calendar.despachobonsai.com"
-          class="pill"
-          :class="{ active: activeApp === 'calendar' }"
-        >
-          {{ $t('supernav.calendar') }}
-        </a>
       </div>
 
       <!-- Right Side -->
@@ -98,12 +91,6 @@ export default {
       >
         {{ $t('supernav.support') }}
       </a>
-      <a
-        href="https://calendar.despachobonsai.com"
-        :class="{ active: activeApp === 'calendar' }"
-      >
-        {{ $t('supernav.calendar') }}
-      </a>
     </div>
   </div>
 </template>
@@ -120,7 +107,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 36px;
+  height: 50px;
   z-index: 9999;
   display: flex;
   flex-direction: row;
