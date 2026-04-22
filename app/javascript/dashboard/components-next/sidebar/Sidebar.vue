@@ -789,6 +789,7 @@ const menuItems = computed(() => {
   background: linear-gradient(to bottom, #4a4a4a, #2a2a2a) !important;
   border-right: 1px solid #1a1a1a !important;
   box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.05) !important;
+  padding-top: 50px;
 }
 [dir='rtl'] .ios6-sidebar {
   border-left: 1px solid #1a1a1a !important;

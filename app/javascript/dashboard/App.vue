@@ -171,6 +171,6 @@ export default {
 }
 
 .app-wrapper {
-  padding-top: 36px;
+  padding-top: 50px;
 }
 </style>

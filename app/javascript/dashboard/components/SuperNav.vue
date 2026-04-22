@@ -36,13 +36,6 @@ export default {
           {{ $t('supernav.dashboard') }}
         </a>
         <a
-          href="https://social.despachobonsai.com"
-          class="pill"
-          :class="{ active: activeApp === 'social' }"
-        >
-          {{ $t('supernav.social') }}
-        </a>
-        <a
           href="https://chat.despachobonsai.com"
           class="pill"
           :class="{ active: activeApp === 'support' }"
@@ -78,12 +71,6 @@ export default {
         :class="{ active: activeApp === 'dashboard' }"
       >
         {{ $t('supernav.dashboard') }}
-      </a>
-      <a
-        href="https://social.despachobonsai.com"
-        :class="{ active: activeApp === 'social' }"
-      >
-        {{ $t('supernav.social') }}
       </a>
       <a
         href="https://chat.despachobonsai.com"
@@ -125,9 +112,7 @@ export default {
 #supernav a,
 #supernav button,
 #supernav .pill,
-#supernav-mobile-dropdown a {
-  cursor: var(--glove-cursor);
-}
+#supernav-mobile-dropdown a 
 
 /* Left Side: Wordmark */
 #supernav .brand {
@@ -237,7 +222,7 @@ export default {
 #supernav-mobile-dropdown {
   display: none;
   position: fixed;
-  top: 36px;
+  top: 50px;
   left: 0;
   width: 100%;
   background: linear-gradient(180deg, #6a6a6a 0%, #4a4a4a 40%, #3a3a3a 100%);
