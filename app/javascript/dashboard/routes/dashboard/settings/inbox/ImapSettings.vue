@@ -6,6 +6,25 @@ import { useVuelidate } from '@vuelidate/core';
 import { required, minLength } from '@vuelidate/validators';
 import NextButton from 'dashboard/components-next/button/Button.vue';
 
+const DEFAULT_IMAP_SETTINGS = {
+  enabled: true,
+  address: 'imap.gmail.com',
+  port: '993',
+  ssl: true,
+};
+
+const hasImapConfiguration = ({
+  imap_address,
+  imap_port,
+  imap_login,
+  imap_password,
+}) => {
+  return (
+    [imap_address, imap_login, imap_password].some(Boolean) ||
+    Number(imap_port) > 0
+  );
+};
+
 export default {
   components: {
     SettingsFieldSection,
@@ -22,12 +41,12 @@ export default {
   },
   data() {
     return {
-      isIMAPEnabled: false,
-      address: '',
-      port: '',
+      isIMAPEnabled: DEFAULT_IMAP_SETTINGS.enabled,
+      address: DEFAULT_IMAP_SETTINGS.address,
+      port: DEFAULT_IMAP_SETTINGS.port,
       login: '',
       password: '',
-      isSSLEnabled: true,
+      isSSLEnabled: DEFAULT_IMAP_SETTINGS.ssl,
     };
   },
   validations: {
@@ -57,12 +76,20 @@ export default {
         imap_password,
         imap_enable_ssl,
       } = this.inbox;
-      this.isIMAPEnabled = imap_enabled;
-      this.address = imap_address;
-      this.port = imap_port;
-      this.login = imap_login;
-      this.password = imap_password;
-      this.isSSLEnabled = imap_enable_ssl;
+      const shouldUseGmailDefaults = !hasImapConfiguration(this.inbox);
+
+      this.isIMAPEnabled =
+        shouldUseGmailDefaults || typeof imap_enabled !== 'boolean'
+          ? DEFAULT_IMAP_SETTINGS.enabled
+          : imap_enabled;
+      this.address = imap_address || DEFAULT_IMAP_SETTINGS.address;
+      this.port = imap_port || DEFAULT_IMAP_SETTINGS.port;
+      this.login = imap_login || '';
+      this.password = imap_password || '';
+      this.isSSLEnabled =
+        typeof imap_enable_ssl === 'boolean'
+          ? imap_enable_ssl
+          : DEFAULT_IMAP_SETTINGS.ssl;
     },
     async updateInbox() {
       try {

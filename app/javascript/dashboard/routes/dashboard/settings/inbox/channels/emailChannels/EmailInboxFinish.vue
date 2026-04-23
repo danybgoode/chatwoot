@@ -24,12 +24,32 @@ const message = computed(() => {
 const showForwardingAddress = computed(() => {
   return props.inbox.forwarding_enabled;
 });
+
+const configurationRoute = computed(() => {
+  return {
+    name: 'settings_inbox_show',
+    params: { inboxId: props.inboxId, tab: 'configuration' },
+  };
+});
 </script>
 
 <template>
   <div class="w-full text-center">
-    <p class="text-base text-n-slate-11 mt-4 w-4/5 mx-auto leading-7">
+    <p
+      v-if="showForwardingAddress"
+      class="text-base text-n-slate-11 mt-4 w-4/5 mx-auto leading-7"
+    >
       {{ message }}
+    </p>
+    <p v-else class="text-base text-n-slate-11 mt-4 w-4/5 mx-auto leading-7">
+      {{ message }}
+      <router-link
+        :to="configurationRoute"
+        class="text-n-woot-600 hover:text-n-woot-700 underline font-medium"
+      >
+        {{ $t('INBOX_MGMT.ADD.EMAIL_CHANNEL.CONFIGURE_SMTP_IMAP_LINK') }}
+      </router-link>
+      {{ $t('INBOX_MGMT.ADD.EMAIL_CHANNEL.CONFIGURE_SMTP_IMAP_TEXT') }}
     </p>
 
     <div v-if="showForwardingAddress" class="w-[50%] max-w-[50%] mx-auto">
@@ -39,17 +59,14 @@ const showForwardingAddress = computed(() => {
       <woot-code lang="html" :script="inbox.forward_to_email" />
     </div>
 
-    <p class="mt-8 text-sm text-n-slate-11 pb-4">
+    <p v-if="showForwardingAddress" class="mt-8 text-sm text-n-slate-11 pb-4">
       <router-link
-        :to="{
-          name: 'settings_inbox_show',
-          params: { inboxId: inboxId, tab: 'configuration' },
-        }"
-        class="text-n-woot-600 hover:text-n-woot-700 underline"
+        :to="configurationRoute"
+        class="text-n-woot-600 hover:text-n-woot-700 underline font-medium"
       >
         {{ $t('INBOX_MGMT.ADD.EMAIL_CHANNEL.CONFIGURE_SMTP_IMAP_LINK') }}
       </router-link>
-      {{ $t('INBOX_MGMT.ADD.EMAIL_CHANNEL.CONFIGURE_SMTP_IMAP_TEXT') }}
+      {{ ' ' }}{{ $t('INBOX_MGMT.ADD.EMAIL_CHANNEL.CONFIGURE_SMTP_IMAP_TEXT') }}
     </p>
   </div>
 </template>

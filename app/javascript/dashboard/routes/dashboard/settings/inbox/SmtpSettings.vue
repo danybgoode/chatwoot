@@ -8,6 +8,30 @@ import InputRadioGroup from './components/InputRadioGroup.vue';
 import SingleSelectDropdown from './components/SingleSelectDropdown.vue';
 import NextButton from 'dashboard/components-next/button/Button.vue';
 
+const DEFAULT_SMTP_SETTINGS = {
+  enabled: true,
+  address: 'smtp.gmail.com',
+  port: '465',
+  domain: 'gmail.com',
+  ssl: true,
+  starttls: false,
+  openSSLVerifyMode: 'none',
+  authMechanism: 'login',
+};
+
+const hasSmtpConfiguration = ({
+  smtp_address,
+  smtp_port,
+  smtp_login,
+  smtp_password,
+  smtp_domain,
+}) => {
+  return (
+    [smtp_address, smtp_login, smtp_password, smtp_domain].some(Boolean) ||
+    Number(smtp_port) > 0
+  );
+};
+
 export default {
   components: {
     SettingsFieldSection,
@@ -26,19 +50,27 @@ export default {
   },
   data() {
     return {
-      isSMTPEnabled: false,
-      address: '',
-      port: '',
+      isSMTPEnabled: DEFAULT_SMTP_SETTINGS.enabled,
+      address: DEFAULT_SMTP_SETTINGS.address,
+      port: DEFAULT_SMTP_SETTINGS.port,
       login: '',
       password: '',
-      domain: '',
-      ssl: false,
-      starttls: true,
-      openSSLVerifyMode: 'none',
-      authMechanism: 'login',
+      domain: DEFAULT_SMTP_SETTINGS.domain,
+      ssl: DEFAULT_SMTP_SETTINGS.ssl,
+      starttls: DEFAULT_SMTP_SETTINGS.starttls,
+      openSSLVerifyMode: DEFAULT_SMTP_SETTINGS.openSSLVerifyMode,
+      authMechanism: DEFAULT_SMTP_SETTINGS.authMechanism,
       encryptionProtocols: [
-        { id: 'ssl', title: 'SSL/TLS', checked: false },
-        { id: 'starttls', title: 'STARTTLS', checked: true },
+        {
+          id: 'ssl',
+          title: 'SSL/TLS',
+          checked: DEFAULT_SMTP_SETTINGS.ssl,
+        },
+        {
+          id: 'starttls',
+          title: 'STARTTLS',
+          checked: DEFAULT_SMTP_SETTINGS.starttls,
+        },
       ],
       openSSLVerifyModes: [
         { key: 1, value: 'none' },
@@ -92,23 +124,36 @@ export default {
         smtp_openssl_verify_mode,
         smtp_authentication,
       } = this.inbox;
-      this.isSMTPEnabled = smtp_enabled;
-      this.address = smtp_address;
-      this.port = smtp_port;
-      this.login = smtp_login;
-      this.password = smtp_password;
-      this.domain = smtp_domain;
-      this.starttls = smtp_enable_starttls_auto;
-      this.ssl = smtp_enable_ssl_tls;
-      this.openSSLVerifyMode = smtp_openssl_verify_mode;
-      this.authMechanism = smtp_authentication;
+      const shouldUseGmailDefaults = !hasSmtpConfiguration(this.inbox);
+
+      this.isSMTPEnabled =
+        shouldUseGmailDefaults || typeof smtp_enabled !== 'boolean'
+          ? DEFAULT_SMTP_SETTINGS.enabled
+          : smtp_enabled;
+      this.address = smtp_address || DEFAULT_SMTP_SETTINGS.address;
+      this.port = smtp_port || DEFAULT_SMTP_SETTINGS.port;
+      this.login = smtp_login || '';
+      this.password = smtp_password || '';
+      this.domain = smtp_domain || DEFAULT_SMTP_SETTINGS.domain;
+      this.starttls =
+        typeof smtp_enable_starttls_auto === 'boolean'
+          ? smtp_enable_starttls_auto
+          : DEFAULT_SMTP_SETTINGS.starttls;
+      this.ssl =
+        typeof smtp_enable_ssl_tls === 'boolean'
+          ? smtp_enable_ssl_tls
+          : DEFAULT_SMTP_SETTINGS.ssl;
+      this.openSSLVerifyMode =
+        smtp_openssl_verify_mode || DEFAULT_SMTP_SETTINGS.openSSLVerifyMode;
+      this.authMechanism =
+        smtp_authentication || DEFAULT_SMTP_SETTINGS.authMechanism;
 
       this.encryptionProtocols = [
-        { id: 'ssl', title: 'SSL/TLS', checked: smtp_enable_ssl_tls },
+        { id: 'ssl', title: 'SSL/TLS', checked: this.ssl },
         {
           id: 'starttls',
           title: 'STARTTLS',
-          checked: smtp_enable_starttls_auto,
+          checked: this.starttls,
         },
       ];
     },
