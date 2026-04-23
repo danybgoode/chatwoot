@@ -969,6 +969,9 @@
       "TITLE": "IMAP",
       "SUBTITLE": "Configura los detalles de IMAP",
       "NOTE_TEXT": "Para habilitar SMTP, por favor configure IMAP.",
+      "GMAIL_APP_PASSWORD_HINT": "¿Usas Gmail? Necesitarás generar una contraseña de aplicación de 16 caracteres.",
+      "GMAIL_APP_PASSWORD_GENERATE_LINK": "[Genérala aquí.]",
+      "GMAIL_APP_PASSWORD_TUTORIAL_LINK": "[Mira este tutorial de 1 minuto para saber cómo obtenerla.]",
       "UPDATE": "Actualizar ajustes IMAP",
       "TOGGLE_AVAILABILITY": "Habilitar configuración IMAP para esta bandeja de entrada",
       "TOGGLE_HELP": "Habilitar IMAP ayudará al usuario a recibir correo electrónico",
@@ -977,20 +980,21 @@
         "ERROR_MESSAGE": "No se puede actualizar la configuración IMAP"
       },
       "ADDRESS": {
-        "LABEL": "Dirección",
-        "PLACE_HOLDER": "Dirección (Ej: imap.gmail.com)"
+        "LABEL": "Servidor de correo entrante",
+        "PLACE_HOLDER": "imap.gmail.com"
       },
       "PORT": {
         "LABEL": "Puerto",
         "PLACE_HOLDER": "Puerto"
       },
       "LOGIN": {
-        "LABEL": "Iniciar sesión",
-        "PLACE_HOLDER": "Iniciar sesión"
+        "LABEL": "Correo electrónico",
+        "PLACE_HOLDER": "Correo electrónico"
       },
       "PASSWORD": {
-        "LABEL": "Contraseña",
-        "PLACE_HOLDER": "Contraseña"
+        "LABEL": "Contraseña del correo electrónico",
+        "PLACE_HOLDER": "Contraseña de aplicación",
+        "HELP_LINK": "Haz clic aquí para generar tu contraseña."
       },
       "ENABLE_SSL": "Activar SSL"
     },
@@ -1009,20 +1013,21 @@
         "ERROR_MESSAGE": "No se puede actualizar la configuración SMTP"
       },
       "ADDRESS": {
-        "LABEL": "Dirección",
-        "PLACE_HOLDER": "Dirección (Ej: smtp.gmail.com)"
+        "LABEL": "Servidor de correo saliente",
+        "PLACE_HOLDER": "smtp.gmail.com"
       },
       "PORT": {
         "LABEL": "Puerto",
         "PLACE_HOLDER": "Puerto"
       },
       "LOGIN": {
-        "LABEL": "Iniciar sesión",
-        "PLACE_HOLDER": "Iniciar sesión"
+        "LABEL": "Correo electrónico",
+        "PLACE_HOLDER": "Correo electrónico"
       },
       "PASSWORD": {
-        "LABEL": "Contraseña",
-        "PLACE_HOLDER": "Contraseña"
+        "LABEL": "Contraseña del correo electrónico",
+        "PLACE_HOLDER": "Contraseña de aplicación",
+        "HELP_LINK": "Haz clic aquí para generar tu contraseña."
       },
       "DOMAIN": {
         "LABEL": "Dominio",

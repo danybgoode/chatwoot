@@ -2,6 +2,7 @@
 import { mapGetters } from 'vuex';
 import { useAlert } from 'dashboard/composables';
 import SettingsFieldSection from 'dashboard/components-next/Settings/SettingsFieldSection.vue';
+import NextInput from 'dashboard/components-next/input/Input.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength } from '@vuelidate/validators';
 import NextButton from 'dashboard/components-next/button/Button.vue';
@@ -28,6 +29,7 @@ const hasImapConfiguration = ({
 export default {
   components: {
     SettingsFieldSection,
+    NextInput,
     NextButton,
   },
   props: {
@@ -164,15 +166,30 @@ export default {
           :placeholder="$t('INBOX_MGMT.IMAP.LOGIN.PLACE_HOLDER')"
           @blur="v$.login.$touch"
         />
-        <woot-input
-          v-model="password"
-          :class="{ error: v$.password.$error }"
-          class="w-full"
-          :label="$t('INBOX_MGMT.IMAP.PASSWORD.LABEL')"
-          :placeholder="$t('INBOX_MGMT.IMAP.PASSWORD.PLACE_HOLDER')"
-          type="password"
-          @blur="v$.password.$touch"
-        />
+        <div class="w-full">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-0.5">
+            <label for="imap-password" class="text-heading-3 text-n-slate-12">
+              {{ $t('INBOX_MGMT.IMAP.PASSWORD.LABEL') }}
+            </label>
+            <a
+              href="https://myaccount.google.com/apppasswords"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-label-small text-n-woot-600 hover:text-n-woot-700 underline"
+            >
+              {{ $t('INBOX_MGMT.IMAP.PASSWORD.HELP_LINK') }}
+            </a>
+          </div>
+          <NextInput
+            id="imap-password"
+            v-model="password"
+            class="w-full"
+            :message-type="v$.password.$error ? 'error' : 'info'"
+            :placeholder="$t('INBOX_MGMT.IMAP.PASSWORD.PLACE_HOLDER')"
+            type="password"
+            @blur="v$.password.$touch()"
+          />
+        </div>
         <label for="toggle-enable-ssl">
           <input
             v-model="isSSLEnabled"

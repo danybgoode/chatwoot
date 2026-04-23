@@ -978,7 +978,8 @@
       "SUBTITLE": "Set your IMAP details",
       "NOTE_TEXT": "To enable SMTP, please configure IMAP.",
       "GMAIL_APP_PASSWORD_HINT": "Using Gmail? You will need to generate a 16-letter App Password.",
-      "GMAIL_APP_PASSWORD_HINT_LINK": "[Watch this 1-minute tutorial on how to get it.]",
+      "GMAIL_APP_PASSWORD_GENERATE_LINK": "[Generate it here.]",
+      "GMAIL_APP_PASSWORD_TUTORIAL_LINK": "[Watch this 1-minute tutorial on how to get it.]",
       "UPDATE": "Update IMAP settings",
       "TOGGLE_AVAILABILITY": "Enable IMAP configuration for this inbox",
       "TOGGLE_HELP": "Enabling IMAP will help the user to receive email",
@@ -1000,7 +1001,8 @@
       },
       "PASSWORD": {
         "LABEL": "Email Address Password",
-        "PLACE_HOLDER": "App Password"
+        "PLACE_HOLDER": "App Password",
+        "HELP_LINK": "Click here to generate your password."
       },
       "ENABLE_SSL": "Enable SSL"
     },
@@ -1032,7 +1034,8 @@
       },
       "PASSWORD": {
         "LABEL": "Email Address Password",
-        "PLACE_HOLDER": "App Password"
+        "PLACE_HOLDER": "App Password",
+        "HELP_LINK": "Click here to generate your password."
       },
       "DOMAIN": {
         "LABEL": "Domain",

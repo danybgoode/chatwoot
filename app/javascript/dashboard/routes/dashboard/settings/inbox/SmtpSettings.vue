@@ -2,6 +2,7 @@
 import { mapGetters } from 'vuex';
 import { useAlert } from 'dashboard/composables';
 import SettingsFieldSection from 'dashboard/components-next/Settings/SettingsFieldSection.vue';
+import NextInput from 'dashboard/components-next/input/Input.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength } from '@vuelidate/validators';
 import InputRadioGroup from './components/InputRadioGroup.vue';
@@ -35,6 +36,7 @@ const hasSmtpConfiguration = ({
 export default {
   components: {
     SettingsFieldSection,
+    NextInput,
     InputRadioGroup,
     SingleSelectDropdown,
     NextButton,
@@ -244,15 +246,30 @@ export default {
           :placeholder="$t('INBOX_MGMT.SMTP.LOGIN.PLACE_HOLDER')"
           @blur="v$.login.$touch"
         />
-        <woot-input
-          v-model="password"
-          :class="{ error: v$.password.$error }"
-          class="w-full"
-          :label="$t('INBOX_MGMT.SMTP.PASSWORD.LABEL')"
-          :placeholder="$t('INBOX_MGMT.SMTP.PASSWORD.PLACE_HOLDER')"
-          type="password"
-          @blur="v$.password.$touch"
-        />
+        <div class="w-full">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-0.5">
+            <label for="smtp-password" class="text-heading-3 text-n-slate-12">
+              {{ $t('INBOX_MGMT.SMTP.PASSWORD.LABEL') }}
+            </label>
+            <a
+              href="https://myaccount.google.com/apppasswords"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-label-small text-n-woot-600 hover:text-n-woot-700 underline"
+            >
+              {{ $t('INBOX_MGMT.SMTP.PASSWORD.HELP_LINK') }}
+            </a>
+          </div>
+          <NextInput
+            id="smtp-password"
+            v-model="password"
+            class="w-full"
+            :message-type="v$.password.$error ? 'error' : 'info'"
+            :placeholder="$t('INBOX_MGMT.SMTP.PASSWORD.PLACE_HOLDER')"
+            type="password"
+            @blur="v$.password.$touch()"
+          />
+        </div>
         <woot-input
           v-model="domain"
           :class="{ error: v$.domain.$error }"

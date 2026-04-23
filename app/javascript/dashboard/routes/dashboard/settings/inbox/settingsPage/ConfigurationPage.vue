@@ -367,12 +367,21 @@ export default {
           {{ $t('INBOX_MGMT.IMAP.GMAIL_APP_PASSWORD_HINT') }}
           {{ ' ' }}
           <a
+            href="https://myaccount.google.com/apppasswords"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline font-medium hover:no-underline"
+          >
+            {{ $t('INBOX_MGMT.IMAP.GMAIL_APP_PASSWORD_GENERATE_LINK') }}
+          </a>
+          {{ ' ' }}
+          <a
             href="https://www.youtube.com/watch?v=7lXjlbYcpe4"
             target="_blank"
             rel="noopener noreferrer"
             class="underline font-medium hover:no-underline"
           >
-            {{ $t('INBOX_MGMT.IMAP.GMAIL_APP_PASSWORD_HINT_LINK') }}
+            {{ $t('INBOX_MGMT.IMAP.GMAIL_APP_PASSWORD_TUTORIAL_LINK') }}
           </a>
         </p>
       </div>
