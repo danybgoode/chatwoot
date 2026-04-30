@@ -3,7 +3,9 @@ class GlobalConfig
   KEY_PREFIX = 'GLOBAL_CONFIG'.freeze
   DEFAULT_EXPIRY = 1.day
   ENV_OVERRIDES = %w[
+    BRAND_URL
     INSTALLATION_NAME
+    WIDGET_BRAND_URL
   ].freeze
 
   class << self
