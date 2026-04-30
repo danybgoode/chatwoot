@@ -48,7 +48,8 @@ class DashboardController < ActionController::Base
   end
 
   def set_dashboard_scripts
-    @dashboard_scripts = sensitive_path? ? nil : GlobalConfig.get_value('DASHBOARD_SCRIPTS')
+    @support_widget_enabled = !sensitive_path?
+    @dashboard_scripts = @support_widget_enabled ? GlobalConfig.get_value('DASHBOARD_SCRIPTS') : nil
   end
 
   def ensure_installation_onboarding

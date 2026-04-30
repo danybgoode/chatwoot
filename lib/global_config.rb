@@ -2,6 +2,9 @@ class GlobalConfig
   VERSION = 'V1'.freeze
   KEY_PREFIX = 'GLOBAL_CONFIG'.freeze
   DEFAULT_EXPIRY = 1.day
+  ENV_OVERRIDES = %w[
+    INSTALLATION_NAME
+  ].freeze
 
   class << self
     def get(*args)
@@ -38,6 +41,9 @@ class GlobalConfig
     end
 
     def load_from_cache(config_key)
+      env_value = env_override(config_key)
+      return env_value if env_value.present?
+
       cache_key = "#{VERSION}:#{KEY_PREFIX}:#{config_key}"
       cached_value = $alfred.with { |conn| conn.get(cache_key) }
 
@@ -52,6 +58,12 @@ class GlobalConfig
 
     def db_fallback(config_key)
       InstallationConfig.find_by(name: config_key)&.value
+    end
+
+    def env_override(config_key)
+      return unless ENV_OVERRIDES.include?(config_key)
+
+      ENV.fetch(config_key, nil)
     end
   end
 end

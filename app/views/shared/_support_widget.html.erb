@@ -1,0 +1,31 @@
+<% support_widget_base_url = ENV.fetch('SUPPORT_WIDGET_BASE_URL', nil).presence&.chomp('/') %>
+<% support_widget_website_token = ENV.fetch('SUPPORT_WIDGET_WEBSITE_TOKEN', nil).presence %>
+
+<% if support_widget_base_url && support_widget_website_token %>
+  <% support_widget_launcher_title = ENV.fetch('SUPPORT_WIDGET_LAUNCHER_TITLE', 'Hola') %>
+  <% support_widget_position = ENV.fetch('SUPPORT_WIDGET_POSITION', 'right') == 'left' ? 'left' : 'right' %>
+
+  <script>
+    window.chatwootSettings = {
+      position: <%= support_widget_position.to_json.html_safe %>,
+      type: 'standard',
+      launcherTitle: <%= support_widget_launcher_title.to_json.html_safe %>,
+    };
+
+    (function(d, t) {
+      if (window.$chatwoot || window.chatwootSDK) { return; }
+
+      var BASE_URL = <%= support_widget_base_url.to_json.html_safe %>;
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + '/packs/js/sdk.js';
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function() {
+        window.chatwootSDK.run({
+          websiteToken: <%= support_widget_website_token.to_json.html_safe %>,
+          baseUrl: BASE_URL,
+        });
+      };
+    })(document, 'script');
+  </script>
+<% end %>
