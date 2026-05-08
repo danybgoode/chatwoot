@@ -2,34 +2,13 @@
 import { mapGetters } from 'vuex';
 import { useAlert } from 'dashboard/composables';
 import SettingsFieldSection from 'dashboard/components-next/Settings/SettingsFieldSection.vue';
-import NextInput from 'dashboard/components-next/input/Input.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength } from '@vuelidate/validators';
 import NextButton from 'dashboard/components-next/button/Button.vue';
 
-const DEFAULT_IMAP_SETTINGS = {
-  enabled: true,
-  address: 'imap.gmail.com',
-  port: '993',
-  ssl: true,
-};
-
-const hasImapConfiguration = ({
-  imap_address,
-  imap_port,
-  imap_login,
-  imap_password,
-}) => {
-  return (
-    [imap_address, imap_login, imap_password].some(Boolean) ||
-    Number(imap_port) > 0
-  );
-};
-
 export default {
   components: {
     SettingsFieldSection,
-    NextInput,
     NextButton,
   },
   props: {
@@ -43,12 +22,12 @@ export default {
   },
   data() {
     return {
-      isIMAPEnabled: DEFAULT_IMAP_SETTINGS.enabled,
-      address: DEFAULT_IMAP_SETTINGS.address,
-      port: DEFAULT_IMAP_SETTINGS.port,
+      isIMAPEnabled: false,
+      address: '',
+      port: '',
       login: '',
       password: '',
-      isSSLEnabled: DEFAULT_IMAP_SETTINGS.ssl,
+      isSSLEnabled: true,
     };
   },
   validations: {
@@ -78,20 +57,13 @@ export default {
         imap_password,
         imap_enable_ssl,
       } = this.inbox;
-      const shouldUseGmailDefaults = !hasImapConfiguration(this.inbox);
-
       this.isIMAPEnabled =
-        shouldUseGmailDefaults || typeof imap_enabled !== 'boolean'
-          ? DEFAULT_IMAP_SETTINGS.enabled
-          : imap_enabled;
-      this.address = imap_address || DEFAULT_IMAP_SETTINGS.address;
-      this.port = imap_port || DEFAULT_IMAP_SETTINGS.port;
-      this.login = imap_login || '';
-      this.password = imap_password || '';
-      this.isSSLEnabled =
-        typeof imap_enable_ssl === 'boolean'
-          ? imap_enable_ssl
-          : DEFAULT_IMAP_SETTINGS.ssl;
+        typeof imap_enabled === 'boolean' ? imap_enabled : false;
+      this.address = imap_address;
+      this.port = imap_port;
+      this.login = imap_login;
+      this.password = imap_password;
+      this.isSSLEnabled = imap_enable_ssl;
     },
     async updateInbox() {
       try {
@@ -166,30 +138,15 @@ export default {
           :placeholder="$t('INBOX_MGMT.IMAP.LOGIN.PLACE_HOLDER')"
           @blur="v$.login.$touch"
         />
-        <div class="w-full">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-0.5">
-            <label for="imap-password" class="text-heading-3 text-n-slate-12">
-              {{ $t('INBOX_MGMT.IMAP.PASSWORD.LABEL') }}
-            </label>
-            <a
-              href="https://myaccount.google.com/apppasswords"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-label-small text-n-woot-600 hover:text-n-woot-700 underline"
-            >
-              {{ $t('INBOX_MGMT.IMAP.PASSWORD.HELP_LINK') }}
-            </a>
-          </div>
-          <NextInput
-            id="imap-password"
-            v-model="password"
-            class="w-full"
-            :message-type="v$.password.$error ? 'error' : 'info'"
-            :placeholder="$t('INBOX_MGMT.IMAP.PASSWORD.PLACE_HOLDER')"
-            type="password"
-            @blur="v$.password.$touch()"
-          />
-        </div>
+        <woot-input
+          v-model="password"
+          :class="{ error: v$.password.$error }"
+          class="w-full"
+          :label="$t('INBOX_MGMT.IMAP.PASSWORD.LABEL')"
+          :placeholder="$t('INBOX_MGMT.IMAP.PASSWORD.PLACE_HOLDER')"
+          type="password"
+          @blur="v$.password.$touch"
+        />
         <label for="toggle-enable-ssl">
           <input
             v-model="isSSLEnabled"

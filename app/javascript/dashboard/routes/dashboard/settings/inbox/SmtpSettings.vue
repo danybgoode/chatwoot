@@ -2,41 +2,15 @@
 import { mapGetters } from 'vuex';
 import { useAlert } from 'dashboard/composables';
 import SettingsFieldSection from 'dashboard/components-next/Settings/SettingsFieldSection.vue';
-import NextInput from 'dashboard/components-next/input/Input.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength } from '@vuelidate/validators';
 import InputRadioGroup from './components/InputRadioGroup.vue';
 import SingleSelectDropdown from './components/SingleSelectDropdown.vue';
 import NextButton from 'dashboard/components-next/button/Button.vue';
 
-const DEFAULT_SMTP_SETTINGS = {
-  enabled: true,
-  address: 'smtp.gmail.com',
-  port: '465',
-  domain: 'gmail.com',
-  ssl: true,
-  starttls: false,
-  openSSLVerifyMode: 'none',
-  authMechanism: 'login',
-};
-
-const hasSmtpConfiguration = ({
-  smtp_address,
-  smtp_port,
-  smtp_login,
-  smtp_password,
-  smtp_domain,
-}) => {
-  return (
-    [smtp_address, smtp_login, smtp_password, smtp_domain].some(Boolean) ||
-    Number(smtp_port) > 0
-  );
-};
-
 export default {
   components: {
     SettingsFieldSection,
-    NextInput,
     InputRadioGroup,
     SingleSelectDropdown,
     NextButton,
@@ -52,27 +26,19 @@ export default {
   },
   data() {
     return {
-      isSMTPEnabled: DEFAULT_SMTP_SETTINGS.enabled,
-      address: DEFAULT_SMTP_SETTINGS.address,
-      port: DEFAULT_SMTP_SETTINGS.port,
+      isSMTPEnabled: false,
+      address: '',
+      port: '',
       login: '',
       password: '',
-      domain: DEFAULT_SMTP_SETTINGS.domain,
-      ssl: DEFAULT_SMTP_SETTINGS.ssl,
-      starttls: DEFAULT_SMTP_SETTINGS.starttls,
-      openSSLVerifyMode: DEFAULT_SMTP_SETTINGS.openSSLVerifyMode,
-      authMechanism: DEFAULT_SMTP_SETTINGS.authMechanism,
+      domain: '',
+      ssl: false,
+      starttls: true,
+      openSSLVerifyMode: 'none',
+      authMechanism: 'login',
       encryptionProtocols: [
-        {
-          id: 'ssl',
-          title: 'SSL/TLS',
-          checked: DEFAULT_SMTP_SETTINGS.ssl,
-        },
-        {
-          id: 'starttls',
-          title: 'STARTTLS',
-          checked: DEFAULT_SMTP_SETTINGS.starttls,
-        },
+        { id: 'ssl', title: 'SSL/TLS', checked: false },
+        { id: 'starttls', title: 'STARTTLS', checked: true },
       ],
       openSSLVerifyModes: [
         { key: 1, value: 'none' },
@@ -126,36 +92,28 @@ export default {
         smtp_openssl_verify_mode,
         smtp_authentication,
       } = this.inbox;
-      const shouldUseGmailDefaults = !hasSmtpConfiguration(this.inbox);
-
       this.isSMTPEnabled =
-        shouldUseGmailDefaults || typeof smtp_enabled !== 'boolean'
-          ? DEFAULT_SMTP_SETTINGS.enabled
-          : smtp_enabled;
-      this.address = smtp_address || DEFAULT_SMTP_SETTINGS.address;
-      this.port = smtp_port || DEFAULT_SMTP_SETTINGS.port;
-      this.login = smtp_login || '';
-      this.password = smtp_password || '';
-      this.domain = smtp_domain || DEFAULT_SMTP_SETTINGS.domain;
+        typeof smtp_enabled === 'boolean' ? smtp_enabled : false;
+      this.address = smtp_address;
+      this.port = smtp_port;
+      this.login = smtp_login;
+      this.password = smtp_password;
+      this.domain = smtp_domain;
       this.starttls =
         typeof smtp_enable_starttls_auto === 'boolean'
           ? smtp_enable_starttls_auto
-          : DEFAULT_SMTP_SETTINGS.starttls;
+          : true;
       this.ssl =
-        typeof smtp_enable_ssl_tls === 'boolean'
-          ? smtp_enable_ssl_tls
-          : DEFAULT_SMTP_SETTINGS.ssl;
-      this.openSSLVerifyMode =
-        smtp_openssl_verify_mode || DEFAULT_SMTP_SETTINGS.openSSLVerifyMode;
-      this.authMechanism =
-        smtp_authentication || DEFAULT_SMTP_SETTINGS.authMechanism;
+        typeof smtp_enable_ssl_tls === 'boolean' ? smtp_enable_ssl_tls : false;
+      this.openSSLVerifyMode = smtp_openssl_verify_mode || 'none';
+      this.authMechanism = smtp_authentication || 'login';
 
       this.encryptionProtocols = [
-        { id: 'ssl', title: 'SSL/TLS', checked: this.ssl },
+        { id: 'ssl', title: 'SSL/TLS', checked: smtp_enable_ssl_tls },
         {
           id: 'starttls',
           title: 'STARTTLS',
-          checked: this.starttls,
+          checked: smtp_enable_starttls_auto,
         },
       ];
     },
@@ -246,30 +204,15 @@ export default {
           :placeholder="$t('INBOX_MGMT.SMTP.LOGIN.PLACE_HOLDER')"
           @blur="v$.login.$touch"
         />
-        <div class="w-full">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-0.5">
-            <label for="smtp-password" class="text-heading-3 text-n-slate-12">
-              {{ $t('INBOX_MGMT.SMTP.PASSWORD.LABEL') }}
-            </label>
-            <a
-              href="https://myaccount.google.com/apppasswords"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-label-small text-n-woot-600 hover:text-n-woot-700 underline"
-            >
-              {{ $t('INBOX_MGMT.SMTP.PASSWORD.HELP_LINK') }}
-            </a>
-          </div>
-          <NextInput
-            id="smtp-password"
-            v-model="password"
-            class="w-full"
-            :message-type="v$.password.$error ? 'error' : 'info'"
-            :placeholder="$t('INBOX_MGMT.SMTP.PASSWORD.PLACE_HOLDER')"
-            type="password"
-            @blur="v$.password.$touch()"
-          />
-        </div>
+        <woot-input
+          v-model="password"
+          :class="{ error: v$.password.$error }"
+          class="w-full"
+          :label="$t('INBOX_MGMT.SMTP.PASSWORD.LABEL')"
+          :placeholder="$t('INBOX_MGMT.SMTP.PASSWORD.PLACE_HOLDER')"
+          type="password"
+          @blur="v$.password.$touch"
+        />
         <woot-input
           v-model="domain"
           :class="{ error: v$.domain.$error }"

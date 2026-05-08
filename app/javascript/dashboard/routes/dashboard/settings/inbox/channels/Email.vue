@@ -41,9 +41,6 @@ const emailProviderList = computed(() => {
       icon: 'i-woot-mail',
     },
   ].filter(providerConfig => {
-    if (providerConfig.key === 'google') {
-      return false;
-    }
     if (isAChatwootInstance.value) {
       return true;
     }
