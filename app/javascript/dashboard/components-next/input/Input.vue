@@ -137,7 +137,7 @@ onMounted(() => {
           ? max
           : undefined
       "
-      class="ios6-input block w-full reset-base text-sm !mb-0 outline outline-1 border-none border-0 outline-offset-[-1px] rounded-lg bg-n-alpha-black2 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-n-slate-10 dark:placeholder:text-n-slate-10 disabled:cursor-not-allowed disabled:opacity-50 text-n-slate-12 transition-all duration-500 ease-in-out [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+      class="bonsai-input block w-full reset-base text-sm !mb-0 outline outline-1 border-none border-0 outline-offset-[-1px] rounded-lg bg-n-alpha-black2 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-n-slate-10 dark:placeholder:text-n-slate-10 disabled:cursor-not-allowed disabled:opacity-50 text-n-slate-12 transition-all duration-500 ease-in-out [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
       @input="handleInput"
       @focus="handleFocus"
       @blur="handleBlur"
@@ -154,27 +154,32 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.ios6-input {
-  background: linear-gradient(to bottom, #d0d0d0, #e8e8e8) !important;
-  border: 1px solid #aaaaaa !important;
-  border-radius: 6px !important;
+.bonsai-input {
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(255, 255, 255, 0.42)
+    ),
+    rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(16, 20, 16, 0.12) !important;
+  border-radius: 14px !important;
   box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(0, 0, 0, 0.2) !important;
-  color: #1a1a1a !important;
+    0 2px 8px rgba(34, 49, 37, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+  color: var(--color-ink) !important;
   outline: none !important;
 }
 
-.ios6-input::placeholder {
-  color: #888888 !important;
+.bonsai-input::placeholder {
+  color: var(--color-muted) !important;
 }
 
-.ios6-input:focus,
-.ios6-input.focus {
-  border-color: #147efb !important;
+.bonsai-input:focus,
+.bonsai-input.focus {
+  border-color: rgba(23, 63, 53, 0.52) !important;
   box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(0, 0, 0, 0.2),
-    0 0 0 3px rgba(20, 126, 251, 0.3) !important;
+    0 0 0 3px rgba(183, 215, 206, 0.42),
+    0 8px 24px rgba(34, 49, 37, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
 }
 </style>

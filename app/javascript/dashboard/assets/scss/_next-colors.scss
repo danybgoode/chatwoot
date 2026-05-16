@@ -29,18 +29,18 @@
     --iris-11: 87 83 198;
     --iris-12: 39 41 98;
 
-    --blue-1: 251 253 255;
-    --blue-2: 245 249 255;
-    --blue-3: 233 243 255;
-    --blue-4: 218 236 255;
-    --blue-5: 201 226 255;
-    --blue-6: 181 213 255;
-    --blue-7: 155 195 252;
-    --blue-8: 117 171 247;
-    --blue-9: 39 129 246;
-    --blue-10: 16 115 233;
-    --blue-11: 8 109 224;
-    --blue-12: 11 50 101;
+    --blue-1: 250 252 249;
+    --blue-2: 244 246 242;
+    --blue-3: 238 244 239;
+    --blue-4: 221 235 229;
+    --blue-5: 199 223 215;
+    --blue-6: 183 215 206;
+    --blue-7: 142 187 173;
+    --blue-8: 98 153 134;
+    --blue-9: 23 63 53;
+    --blue-10: 26 82 68;
+    --blue-11: 23 63 53;
+    --blue-12: 16 20 16;
 
     --ruby-1: 255 252 253;
     --ruby-2: 255 247 248;
@@ -107,53 +107,121 @@
     --violet-11: 101 85 183;
     --violet-12: 47 38 95;
 
-    --background-color: 247 247 247;
-    --surface-1: 254 254 254;
+    --background-color: 244 246 242;
+    --surface-1: 247 248 244;
     --surface-2: 255 255 255;
     --surface-active: 255 255 255;
-    --background-input-box: 0, 0, 0, 0.03;
-    --text-blue: 1 22 44;
+    --background-input-box: 16, 20, 16, 0.03;
+    --text-blue: 23 63 53;
     --text-purple: 2 4 49;
     --text-amber: 37 24 1;
-    --border-container: 236 236 236;
-    --border-strong: 226 227 231;
-    --border-weak: 234 234 234;
-    --border-blue-strong: 18 61 117;
-    --solid-1: 255 255 255;
+    --border-container: 16, 20, 16, 0.08;
+    --border-strong: 206 218 211;
+    --border-weak: 226 234 228;
+    --border-blue-strong: 23 63 53;
+    --solid-1: 250 252 249;
     --solid-2: 255 255 255;
     --solid-3: 255 255 255;
     --solid-active: 255 255 255;
     --solid-amber: 255 228 181;
-    --solid-blue: 218 236 255;
-    --solid-blue-2: 251 253 255;
+    --solid-blue: 183 215 206;
+    --solid-blue-2: 244 246 242;
     --solid-iris: 230 231 255;
     --solid-purple: 230 231 255;
     --solid-red: 254 200 201;
     --solid-amber-button: 255 221 141;
     --card-color: 255 255 255;
-    --overlay: 0, 0, 0, 0.12;
+    --overlay: 10, 16, 12, 0.48;
     --overlay-avatar: 255, 255, 255, 0.67;
     --button-color: 255 255 255;
     --button-hover-color: 255, 255, 255, 0.2;
-    --label-background: 247 247 247;
-    --label-border: 0, 0, 0, 0.04;
+    --label-background: 244 246 242;
+    --label-border: 16, 20, 16, 0.06;
 
-    --alpha-1: 215, 215, 215, 0.22;
-    --alpha-2: 196, 197, 198, 0.22;
+    --alpha-1: 183, 215, 206, 0.22;
+    --alpha-2: 23, 63, 53, 0.08;
     --alpha-3: 255, 255, 255, 0.96;
-    --black-alpha-1: 0, 0, 0, 0.12;
-    --black-alpha-2: 0, 0, 0, 0.04;
-    --border-blue: 39, 129, 246, 0.5;
+    --black-alpha-1: 16, 20, 16, 0.12;
+    --black-alpha-2: 16, 20, 16, 0.04;
+    --border-blue: 23, 63, 53, 0.5;
     --white-alpha: 255, 255, 255, 0.8;
 
-    // iOS 6 Design System
-    --ios6-primary-blue: #147EFB;
-    --ios6-background-dark: #3d3d3d;
-    --ios6-surface-white: #ffffff;
-    --ios6-border-gray: #c8c7cc;
-    --ios6-linen-pattern: repeating-linear-gradient(45deg, rgba(0,0,0,0.15) 0, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px), repeating-linear-gradient(135deg, rgba(0,0,0,0.15) 0, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
-    --ios6-app-shell: #3d3d3d;
-    --ios6-main-content: #4a4a4a;
+    // Bonsai Design System
+    --color-page: #f4f6f2;
+    --color-ink: #101410;
+    --color-muted: #5f675e;
+    --color-hairline: rgba(16, 20, 16, 0.12);
+    --color-primary: #173f35;
+    --color-primary-mid: #1a5244;
+    --color-primary-ink: #f7fff7;
+    --color-accent: #b7d7ce;
+    --color-warm: #f2caa7;
+    --color-sky: #b6d5ec;
+    --color-success: #4ade80;
+    --color-glass: rgba(255, 255, 255, 0.50);
+    --color-glass-strong: rgba(255, 255, 255, 0.68);
+    --color-glass-border: rgba(255, 255, 255, 0.62);
+    --color-glass-border-dim: rgba(255, 255, 255, 0.16);
+    --blur-glass: blur(24px) saturate(1.28);
+    --blur-glass-strong: blur(26px) saturate(1.30);
+    --blur-button: blur(22px) saturate(1.24);
+    --blur-header: blur(20px) saturate(1.40);
+    --glass-dark-bg: rgba(10, 16, 12, 0.62);
+    --glass-dark-blur: blur(20px) saturate(1.6) brightness(0.85);
+    --glass-dark-border-top: 0.5px solid rgba(255, 255, 255, 0.45);
+    --glass-dark-border-side: 0.5px solid rgba(255, 255, 255, 0.12);
+    --glass-dark-border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+    --glass-dark-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.06) inset,
+      0 24px 56px rgba(0, 0, 0, 0.55),
+      0 4px 12px rgba(0, 0, 0, 0.30);
+    --shadow-glass: 0 18px 50px rgba(34, 49, 37, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    --shadow-glass-dark: 0 28px 70px rgba(16, 20, 16, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    --shadow-soft: 0 8px 24px rgba(34, 49, 37, 0.08);
+    --shadow-subtle: 0 2px 8px rgba(34, 49, 37, 0.06);
+    --radius-xs: 8px;
+    --radius-sm: 14px;
+    --radius-md: 20px;
+    --radius-lg: 28px;
+    --radius-xl: 36px;
+    --radius-pill: 999px;
+    --font-display: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+    --font-text: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+    --fs-h1: clamp(3.1rem, 6vw, 5.4rem);
+    --fs-h2: clamp(2rem, 5.2vw, 4.8rem);
+    --fs-h3: clamp(1.35rem, 3vw, 2.05rem);
+    --fs-h4: clamp(1.15rem, 2vw, 1.35rem);
+    --lh-display: 0.98;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-black: 800;
+    --ease-default: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --dur-hover: 180ms;
+    --dur-panel: 280ms;
+    --dur-press: 90ms;
+    --dur-expand: 540ms;
+    --dur-collapse: 260ms;
+    --max-width: 1160px;
+    --gutter: clamp(1rem, 4vw, 2rem);
+    --header-offset: 64px;
+    --fg-1: var(--color-ink);
+    --fg-2: var(--color-muted);
+    --fg-on-primary: var(--color-primary-ink);
+    --bg-page: var(--color-page);
+    --primary-blue: var(--color-primary);
+    --primary-blue-dark: var(--color-primary-mid);
+    --text-primary: var(--color-ink);
+    --text-secondary: var(--color-muted);
+
+    --bonsai-primary: var(--color-primary);
+    --bonsai-surface: linear-gradient(120deg, rgba(183, 215, 206, 0.50), transparent 36%),
+      linear-gradient(290deg, rgba(242, 202, 167, 0.42), transparent 34%),
+      linear-gradient(145deg, #f7f8f4 0%, #eef4ef 48%, #f7f3eb 100%);
   }
 
   .dark {
@@ -184,18 +252,18 @@
     --iris-11: 158 177 255;
     --iris-12: 224 223 254;
 
-    --blue-1: 10 17 28;
-    --blue-2: 15 24 38;
-    --blue-3: 15 39 72;
-    --blue-4: 10 49 99;
-    --blue-5: 18 61 117;
-    --blue-6: 29 84 134;
-    --blue-7: 40 89 156;
-    --blue-8: 48 106 186;
-    --blue-9: 39 129 246;
-    --blue-10: 21 116 231;
-    --blue-11: 126 182 255;
-    --blue-12: 205 227 255;
+    --blue-1: 9 14 11;
+    --blue-2: 10 16 12;
+    --blue-3: 14 28 23;
+    --blue-4: 16 42 35;
+    --blue-5: 18 53 44;
+    --blue-6: 23 63 53;
+    --blue-7: 26 82 68;
+    --blue-8: 42 108 87;
+    --blue-9: 183 215 206;
+    --blue-10: 199 223 215;
+    --blue-11: 183 215 206;
+    --blue-12: 247 255 247;
 
     --ruby-1: 25 17 19;
     --ruby-2: 30 21 23;
@@ -262,24 +330,24 @@
     --violet-11: 169 153 236;
     --violet-12: 226 221 254;
 
-    --background-color: 28 29 32;
-    --surface-1: 20 21 23;
-    --surface-2: 22 23 26;
-    --surface-active: 53 57 66;
+    --background-color: 10 16 12;
+    --surface-1: 14 20 16;
+    --surface-2: 18 28 23;
+    --surface-active: 26 82 68;
     --background-input-box: 255, 255, 255, 0.02;
-    --text-blue: 213 234 255;
+    --text-blue: 183 215 206;
     --text-purple: 232 233 254;
     --text-amber: 255 247 234;
     --border-strong: 46 45 50;
     --border-weak: 31 31 37;
-    --border-blue-strong: 201 226 255;
-    --solid-1: 23 23 26;
-    --solid-2: 29 30 36;
-    --solid-3: 44 45 54;
-    --solid-active: 53 57 66;
+    --border-blue-strong: 183 215 206;
+    --solid-1: 14 20 16;
+    --solid-2: 18 28 23;
+    --solid-3: 26 42 35;
+    --solid-active: 26 82 68;
     --solid-amber: 56 50 41;
-    --solid-blue: 15 57 102;
-    --solid-blue-2: 26 29 35;
+    --solid-blue: 23 63 53;
+    --solid-blue-2: 14 20 16;
     --solid-iris: 38 42 101;
     --solid-purple: 51 51 107;
     --solid-red: 90 33 34;
@@ -287,8 +355,8 @@
     --card-color: 28 30 34;
     --overlay: 0, 0, 0, 0.4;
     --overlay-avatar: 0, 0, 0, 0.05;
-    --button-color: 42 43 51;
-    --button-hover-color: 0, 0, 0, 0.15;
+    --button-color: 23 63 53;
+    --button-hover-color: 255, 255, 255, 0.10;
     --label-background: 36 38 45;
     --label-border: 255, 255, 255, 0.03;
 
@@ -297,7 +365,7 @@
     --alpha-3: 33, 34, 38, 0.95;
     --black-alpha-1: 0, 0, 0, 0.3;
     --black-alpha-2: 0, 0, 0, 0.2;
-    --border-blue: 39, 129, 246, 0.5;
+    --border-blue: 183, 215, 206, 0.5;
     --border-container: 255, 255, 255, 0;
     --white-alpha: 255, 255, 255, 0.1;
   }

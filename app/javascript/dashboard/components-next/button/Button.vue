@@ -100,13 +100,15 @@ const computedJustify = computed(() => {
 const STYLE_CONFIG = {
   colors: {
     blue: {
-      solid: 'ios6-primary-btn text-white',
+      solid:
+        'bg-n-brand text-white hover:enabled:bg-n-brand/90 focus-visible:bg-n-brand/90 outline-transparent shadow-sm',
       faded:
-        'bg-n-brand/10 text-n-blue-11 hover:enabled:bg-n-brand/20 focus-visible:bg-n-brand/20 outline-transparent',
-      outline: 'text-n-blue-11 outline-n-brand',
+        'bg-n-brand/10 text-n-brand hover:enabled:bg-n-brand/20 focus-visible:bg-n-brand/20 outline-transparent',
+      outline:
+        'text-n-brand outline-n-brand hover:enabled:bg-n-brand/10 focus-visible:bg-n-brand/10',
       ghost:
-        'text-n-blue-11 hover:enabled:bg-n-alpha-2 focus-visible:bg-n-alpha-2 outline-transparent',
-      link: 'text-n-blue-11 hover:enabled:underline focus-visible:underline outline-transparent',
+        'text-n-brand hover:enabled:bg-n-alpha-2 focus-visible:bg-n-alpha-2 outline-transparent',
+      link: 'text-n-brand hover:enabled:underline focus-visible:underline outline-transparent',
     },
     ruby: {
       solid:
@@ -190,7 +192,7 @@ const STYLE_CONFIG = {
     center: 'justify-center',
     end: 'justify-end',
   },
-  base: 'inline-flex items-center min-w-0 gap-2 transition-all duration-100 ease-out border-0 rounded-lg outline-1 outline disabled:opacity-50',
+  base: 'inline-flex items-center min-w-0 gap-2 transition-all duration-100 ease-out border-0 rounded-full outline-1 outline disabled:opacity-50',
 };
 
 const variantClasses = computed(() => {
@@ -258,25 +260,3 @@ const animationClasses = computed(() => {
     </slot>
   </button>
 </template>
-
-<style scoped>
-.ios6-primary-btn {
-  background: linear-gradient(to bottom, #1e84fd, #0060e0) !important;
-  border: 1px solid #0050c0 !important;
-  border-radius: 10px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 2px 4px rgba(0, 0, 0, 0.4) !important;
-  outline: none !important;
-}
-.ios6-primary-btn:active:enabled {
-  background: linear-gradient(to bottom, #0060e0, #0040a0) !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5) !important;
-}
-.ios6-primary-btn:disabled {
-  background: linear-gradient(to bottom, #cccccc, #aaaaaa) !important;
-  border: 1px solid #999999 !important;
-  box-shadow: none !important;
-  opacity: 1 !important;
-}
-</style>

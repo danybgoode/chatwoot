@@ -639,7 +639,7 @@ const menuItems = computed(() => {
       closeMobileSidebar,
       { ignore: ['#mobile-sidebar-launcher'] },
     ]"
-    class="ios6-sidebar flex flex-col text-sm pb-px fixed top-0 ltr:left-0 rtl:right-0 h-full z-40 w-[200px] md:w-auto md:relative md:flex-shrink-0 md:ltr:translate-x-0 md:rtl:translate-x-0"
+    class="bonsai-sidebar flex flex-col text-sm pb-px fixed top-0 ltr:left-0 rtl:right-0 h-full z-40 w-[200px] md:w-auto md:relative md:flex-shrink-0 md:ltr:translate-x-0 md:rtl:translate-x-0"
     :class="[
       {
         'shadow-lg md:shadow-none': isMobileSidebarOpen,
@@ -785,19 +785,26 @@ const menuItems = computed(() => {
 </template>
 
 <style scoped>
-.ios6-sidebar {
-  background: linear-gradient(to bottom, #4a4a4a, #2a2a2a) !important;
-  border-right: 1px solid #1a1a1a !important;
-  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.05) !important;
+.bonsai-sidebar {
+  background: linear-gradient(
+      180deg,
+      rgba(23, 63, 53, 0.96),
+      rgba(10, 16, 12, 0.92)
+    ),
+    var(--glass-dark-bg) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow:
+    inset -1px 0 0 rgba(255, 255, 255, 0.08),
+    12px 0 32px rgba(16, 20, 16, 0.12) !important;
 }
-[dir='rtl'] .ios6-sidebar {
-  border-left: 1px solid #1a1a1a !important;
+[dir='rtl'] .bonsai-sidebar {
+  border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-right: none !important;
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.05) !important;
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 @media (max-width: 767px) {
-  .ios6-sidebar {
+  .bonsai-sidebar {
     padding-top: 50px;
   }
 }

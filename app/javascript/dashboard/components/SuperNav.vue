@@ -83,7 +83,7 @@ export default {
 </template>
 
 <style scoped>
-/* iOS 6 Custom Cursor */
+/* Bonsai custom cursor */
 :root {
   --glove-cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" stroke="black" stroke-width="1.5" d="M12.984 8.243v3.743l-1.32.616-2.094-4.833a1.597 1.597 0 0 0-2.457-.61l-3.328 2.664a1.737 1.737 0 0 0-.258 2.518l7.07 8.01c.712.808 1.954 1.259 3.037 1.259h3.766c1.69 0 3.012-1.373 3.012-3.064V12.78c0-1.02-.827-1.847-1.847-1.847-.19 0-.376.03-.553.085v-.435c0-1.02-.827-1.847-1.847-1.847-.282 0-.55.064-.79.178-.29-.68-.962-1.157-1.745-1.157a1.85 1.85 0 0 0-.648.118V8.243c0-1.02-.827-1.847-1.847-1.847s-1.847.828-1.847 1.847z"/></svg>'),
     pointer;
@@ -100,19 +100,29 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(180deg, #6a6a6a 0%, #4a4a4a 40%, #3a3a3a 100%);
-  border-bottom: 1px solid #1a1a1a;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+      180deg,
+      rgba(23, 63, 53, 0.96),
+      rgba(10, 16, 12, 0.9)
+    ),
+    var(--glass-dark-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 24px rgba(16, 20, 16, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
   padding: 0 12px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-text);
   box-sizing: border-box;
+  backdrop-filter: var(--blur-header);
 }
 
 /* Interactive Elements Cursor */
 #supernav a,
 #supernav button,
 #supernav .pill,
-#supernav-mobile-dropdown a 
+#supernav-mobile-dropdown a {
+  cursor: pointer;
+}
 
 /* Left Side: Wordmark */
 #supernav .brand {
@@ -120,7 +130,6 @@ export default {
   font-weight: bold;
   font-size: 14px;
   text-decoration: none;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
 }
@@ -129,25 +138,24 @@ export default {
 #supernav .center-pills {
   display: flex;
   gap: 0;
-  border-radius: 4px;
+  border-radius: 999px;
   overflow: hidden;
-  border: 1px solid #2a2a2a;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 /* Individual Pill Styles (Inactive by default) */
 #supernav .pill {
-  background: linear-gradient(180deg, #5a5a5a 0%, #3a3a3a 100%);
-  color: #c8c7cc;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(247, 255, 247, 0.72);
   text-decoration: none;
   font-size: 12px;
   font-weight: bold;
   padding: 0 12px;
   height: 24px;
   line-height: 24px;
-  border-left: 1px solid #2a2a2a;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   transition:
     background 0.1s ease,
     color 0.1s ease;
@@ -158,19 +166,23 @@ export default {
 }
 
 #supernav .pill:hover:not(.active) {
-  background: linear-gradient(180deg, #6a6a6a 0%, #4a4a4a 100%);
+  background: rgba(255, 255, 255, 0.14);
   color: white;
 }
 
 /* Active Pill Style */
 #supernav .pill.active {
-  background: linear-gradient(180deg, #0050c0 0%, #003da0 100%);
-  color: white;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-  border-color: #003090;
-  /* Adjusting borders so the pressed pill blends perfectly */
-  border-right: 1px solid #003090;
-  margin-right: -1px; /* collapse sibling border */
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.16),
+      transparent 42%
+    ),
+    rgba(183, 215, 206, 0.22);
+  color: #f7fff7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  border-color: rgba(183, 215, 206, 0.26);
+  border-right: 1px solid rgba(183, 215, 206, 0.26);
+  margin-right: -1px;
   position: relative;
   z-index: 2;
 }
@@ -182,11 +194,10 @@ export default {
 }
 
 #supernav .back-link {
-  color: #c8c7cc;
+  color: rgba(247, 255, 247, 0.72);
   text-decoration: none;
   font-size: 13px;
   font-weight: bold;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
 }
 
 #supernav .back-link:hover {
@@ -196,25 +207,24 @@ export default {
 /* Mobile Menu Button - Hidden by default */
 #supernav .mobile-menu-toggle {
   display: none;
-  background: linear-gradient(180deg, #5a5a5a 0%, #3a3a3a 100%);
-  color: #c8c7cc;
-  border: 1px solid #2a2a2a;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(247, 255, 247, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    0 1px 3px rgba(0, 0, 0, 0.4);
+    0 1px 3px rgba(16, 20, 16, 0.18);
   height: 24px;
   line-height: 22px;
   padding: 0 10px;
-  border-radius: 4px;
+  border-radius: 999px;
   font-size: 16px;
   font-weight: bold;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
   outline: none;
 }
 
 #supernav .mobile-menu-toggle:hover,
 #supernav .mobile-menu-toggle.active {
-  background: linear-gradient(180deg, #6a6a6a 0%, #4a4a4a 100%);
+  background: rgba(255, 255, 255, 0.14);
   color: white;
 }
 
@@ -225,9 +235,14 @@ export default {
   top: 50px;
   left: 0;
   width: 100%;
-  background: linear-gradient(180deg, #6a6a6a 0%, #4a4a4a 40%, #3a3a3a 100%);
-  border-bottom: 2px solid #1a1a1a;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+      180deg,
+      rgba(23, 63, 53, 0.96),
+      rgba(10, 16, 12, 0.92)
+    ),
+    var(--glass-dark-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(16, 20, 16, 0.18);
   z-index: 9998;
 }
 
@@ -242,9 +257,8 @@ export default {
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
 }
 
 #supernav-mobile-dropdown a:last-child {
@@ -252,8 +266,8 @@ export default {
 }
 
 #supernav-mobile-dropdown a.active {
-  background: linear-gradient(180deg, #0050c0 0%, #003da0 100%);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: rgba(183, 215, 206, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 #supernav-mobile-dropdown a:hover:not(.active) {

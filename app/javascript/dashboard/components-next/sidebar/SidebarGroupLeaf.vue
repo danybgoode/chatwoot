@@ -31,7 +31,7 @@ const shouldRenderComponent = computed(() => {
       :is="to ? 'router-link' : 'div'"
       :to="to"
       :title="label"
-      class="ios6-nav-item flex h-8 items-center gap-2 px-2 py-1 rounded-lg group min-w-0"
+      class="bonsai-nav-item flex h-8 items-center gap-2 px-2 py-1 rounded-lg group min-w-0"
       :class="{
         active: active,
       }"
@@ -54,17 +54,22 @@ const shouldRenderComponent = computed(() => {
 </template>
 
 <style scoped>
-.ios6-nav-item {
-  color: #c8c7cc !important;
+.bonsai-nav-item {
+  color: rgba(247, 255, 247, 0.72) !important;
   background: transparent !important;
 }
-.ios6-nav-item:hover {
-  background: linear-gradient(to bottom, #5a5a5a, #3a3a3a) !important;
+.bonsai-nav-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
 }
-.ios6-nav-item.active {
-  background: linear-gradient(to bottom, #1e84fd, #0060e0) !important;
-  color: #ffffff !important;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+.bonsai-nav-item.active {
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.16),
+      transparent 42%
+    ),
+    rgba(183, 215, 206, 0.22) !important;
+  color: #f7fff7 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
 }
 </style>
